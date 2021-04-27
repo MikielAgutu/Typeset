@@ -23,17 +23,12 @@ namespace Typeset
             }
 
             var pagesHtml = stringBuilder.ToString();
-            var css = _stringResourceProvider.Get(StringResources.Css);
-            var html =
-                $"<html>" +
-                "<head>" +
-                "<style>" +
-                $"{css}" +
-                "</style>" +
-                "</head>" +
-                $"{Environment.NewLine}" +
-                $"{pagesHtml}" +
-                "</html>";
+            var bookHtml = _stringResourceProvider.Get(StringResources.BookHtml);
+            var css = _stringResourceProvider.Get(StringResources.BookCss);
+
+            var html = bookHtml
+                .Replace("{css}", css)
+                .Replace("{pagesHtml}", pagesHtml);
 
             return html;
         }
