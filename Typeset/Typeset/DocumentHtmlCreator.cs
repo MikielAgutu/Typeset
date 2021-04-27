@@ -12,7 +12,7 @@ namespace Typeset
             _stringResourceProvider = stringResourceProvider;
         }
 
-        public string Create(DocumentFormatting documentFormatting, params string[] markdownPages)
+        public string Create(DocumentFormatting documentFormatting, IEnumerable<string> markdownPages)
         {
             var pagesHtml = GetHtmlForMarkdownPages(markdownPages);
             var documentHtml = _stringResourceProvider.Get(StringResources.DocumentHtml);

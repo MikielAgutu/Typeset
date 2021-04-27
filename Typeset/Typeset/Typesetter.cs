@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace Typeset
@@ -7,7 +8,7 @@ namespace Typeset
     {
         private readonly DocumentHtmlCreator _documentHtmlCreator = new DocumentHtmlCreator(new StringResourceProvider());
 
-        public Stream CreateDocumentPdfStream(DocumentFormatting documentFormatting, params string[] markdownPages)
+        public Stream CreateDocumentPdfStream(DocumentFormatting documentFormatting, IEnumerable<string> markdownPages)
         {
             var html = _documentHtmlCreator.Create(documentFormatting, markdownPages);
             return CreatePdfStreamFromHtml(html);

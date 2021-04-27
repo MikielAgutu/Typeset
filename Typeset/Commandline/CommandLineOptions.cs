@@ -1,4 +1,5 @@
-﻿using CommandLine;
+﻿using System.Collections.Generic;
+using CommandLine;
 
 namespace Commandline
 {
@@ -18,5 +19,11 @@ namespace Commandline
 
         [Option("fontSize", Required = false, HelpText = "Font size for main text of document")]
         public string FontSize { get; set; }
+
+        [Option("InputFilePaths", Required = false, HelpText = "Markdown files to create into a document")]
+        public List<string> InputFilePaths { get; set; }
+
+        [Option("outputFilepath", Required = false, HelpText = "Where to output the document PDF")]
+        public string OutputFilepath { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using CommandLine;
 using Typeset;
 
@@ -48,11 +49,10 @@ namespace Commandline
                 PageSize = commandLineOptions.PageSize
             };
 
-            var stream = typesetter.CreateDocumentPdfStream(
-                documentFormatting,
-                "# Hello\nworld", "# Goodbye \nuniverse");
+            var markdownPages = commandLineOptions.InputFilePaths.Select(File.ReadAllText);
+            var stream = typesetter.CreateDocumentPdfStream(documentFormatting, markdownPages);
 
-            using var fileStream = new FileStream("C:\\output\\output.pdf", FileMode.Create);
+            using var fileStream = new FileStream(commandLineOptions.OutputFilepath, FileMode.Create);
             stream.CopyTo(fileStream);
         }
 
