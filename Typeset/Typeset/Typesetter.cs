@@ -3,18 +3,13 @@ using System.Threading.Tasks;
 
 namespace Typeset
 {
-    public class DocumentFormatting
-    {
-
-    }
-
     public class Typesetter
     {
         private readonly DocumentHtmlCreator _documentHtmlCreator = new DocumentHtmlCreator(new StringResourceProvider());
 
-        public Stream CreateDocumentPdfStream(params string[] markdownPages)
+        public Stream CreateDocumentPdfStream(DocumentFormatting documentFormatting, params string[] markdownPages)
         {
-            var html = _documentHtmlCreator.Create(markdownPages);
+            var html = _documentHtmlCreator.Create(documentFormatting, markdownPages);
             return CreatePdfStreamFromHtml(html);
         }
 

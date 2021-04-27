@@ -1,5 +1,5 @@
 ﻿html {
-    font-family: "arial";
+    font-family: "{fontFamily}";
 }
 
 body {
@@ -7,8 +7,8 @@ body {
 }
 
 @page {
-    size: A3;
-    margin:70pt 60pt 70pt;
+    size: {pageSize};
+    margin: {pageMargin};
 }
 
 @page:right {
@@ -44,7 +44,7 @@ body {
 body {
   /* Reset chapter and figure counters */
 	counter-reset: chapternum;
-    line-height: 200%;
+    line-height: {lineHeight};
 }
 
 /*
@@ -75,5 +75,5 @@ h1 + p, h2 + p, h3 + p {
 }
 
 p {
-    font-size: 12pt;
+    font-size: {fontSize};
 }

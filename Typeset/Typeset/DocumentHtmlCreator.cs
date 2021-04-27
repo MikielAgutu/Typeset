@@ -12,11 +12,18 @@ namespace Typeset
             _stringResourceProvider = stringResourceProvider;
         }
 
-        public string Create(params string[] markdownPages)
+        public string Create(DocumentFormatting documentFormatting, params string[] markdownPages)
         {
             var pagesHtml = GetHtmlForMarkdownPages(markdownPages);
             var documentHtml = _stringResourceProvider.Get(StringResources.DocumentHtml);
-            var css = _stringResourceProvider.Get(StringResources.DocumentCss);
+
+            var css = _stringResourceProvider.Get(StringResources.DocumentCss)
+                .Replace("{fontFamily}", documentFormatting.FontFamily)
+                .Replace("{fontSize}", documentFormatting.FontSize)
+                .Replace("{lineHeight}", documentFormatting.LineHeight)
+                .Replace("{pageMargin}", documentFormatting.PageMargin)
+                .Replace("{pageSize}", documentFormatting.PageSize);
+
 
             var html = documentHtml
                 .Replace("{css}", css)
