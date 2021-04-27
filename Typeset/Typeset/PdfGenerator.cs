@@ -4,7 +4,7 @@ using PuppeteerSharp;
 
 namespace Typeset
 {
-    internal class PdfGenerator
+    internal static class PdfGenerator
     {
         public static async Task<Stream> GeneratePdfStreamFromHtml(string html)
         {

@@ -1,4 +1,5 @@
-﻿using Typeset;
+﻿using System.IO;
+using Typeset;
 
 namespace Commandline
 {
@@ -7,7 +8,10 @@ namespace Commandline
         public static void Main(string[] args)
         {
             var typesetter = new Typesetter();
-            typesetter.GeneratePdf();
+            var stream = typesetter.CreatePdfStreamFromHtml("<h1>Hello</h1>\n<p>world</p>");
+
+            using var fileStream = new FileStream("C:\\output\\output.pdf", FileMode.Create);
+            stream.CopyTo(fileStream);
         }
     }
 }

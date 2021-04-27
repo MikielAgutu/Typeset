@@ -1,17 +1,20 @@
-﻿using System.Threading.Tasks;
+﻿using System.IO;
+using System.Threading.Tasks;
 
 namespace Typeset
 {
     public class Typesetter
     {
-        public void GeneratePdf()
+        public Stream CreatePdfStreamFromHtml(string html)
         {
-            GeneratePdfFromHtml().GetAwaiter().GetResult();
+            var pdfStream = CreatePdfStreamFromHtmlAsync(html).GetAwaiter().GetResult();
+            return pdfStream;
         }
 
-        private async Task GeneratePdfFromHtml()
+        private static async Task<Stream> CreatePdfStreamFromHtmlAsync(string html)
         {
-
+            var pdfStream = await PdfGenerator.GeneratePdfStreamFromHtml(html);
+            return pdfStream;
         }
     }
 }
