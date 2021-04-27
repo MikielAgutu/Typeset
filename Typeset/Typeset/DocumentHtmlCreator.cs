@@ -12,8 +12,9 @@ namespace Typeset
             _stringResourceProvider = stringResourceProvider;
         }
 
-        public string Create(DocumentFormatting documentFormatting, IEnumerable<string> markdownPages)
+        public string Create(DocumentMetadata documentMetadata, IEnumerable<string> markdownPages)
         {
+            var documentFormatting = documentMetadata.DocumentFormatting;
             var pagesHtml = GetHtmlForMarkdownPages(markdownPages);
             var documentHtml = _stringResourceProvider.Get(StringResources.DocumentHtml);
 
@@ -22,7 +23,8 @@ namespace Typeset
                 .Replace("{fontSize}", documentFormatting.FontSize)
                 .Replace("{lineHeight}", documentFormatting.LineHeight)
                 .Replace("{pageMargin}", documentFormatting.PageMargin)
-                .Replace("{pageSize}", documentFormatting.PageSize);
+                .Replace("{pageSize}", documentFormatting.PageSize)
+                .Replace("{documentTitle}", documentMetadata.Title);
 
 
             var html = documentHtml

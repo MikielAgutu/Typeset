@@ -49,8 +49,13 @@ namespace Commandline
                 PageSize = commandLineOptions.PageSize
             };
 
+            var documentMetadata = 
+                new DocumentMetadata(
+                commandLineOptions.Title,
+                documentFormatting);
+
             var markdownPages = commandLineOptions.InputFilePaths.Select(File.ReadAllText);
-            var stream = typesetter.CreateDocumentPdfStream(documentFormatting, markdownPages);
+            var stream = typesetter.CreateDocumentPdfStream(documentMetadata, markdownPages);
 
             using var fileStream = new FileStream(commandLineOptions.OutputFilepath, FileMode.Create);
             stream.CopyTo(fileStream);

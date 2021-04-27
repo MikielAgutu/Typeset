@@ -8,9 +8,9 @@ namespace Typeset
     {
         private readonly DocumentHtmlCreator _documentHtmlCreator = new DocumentHtmlCreator(new StringResourceProvider());
 
-        public Stream CreateDocumentPdfStream(DocumentFormatting documentFormatting, IEnumerable<string> markdownPages)
+        public Stream CreateDocumentPdfStream(DocumentMetadata documentMetadata, IEnumerable<string> markdownPages)
         {
-            var html = _documentHtmlCreator.Create(documentFormatting, markdownPages);
+            var html = _documentHtmlCreator.Create(documentMetadata, markdownPages);
             return CreatePdfStreamFromHtml(html);
         }
 

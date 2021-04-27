@@ -14,7 +14,7 @@ body {
 @page:right {
   @bottom-left {
       margin: 5%;
-      content: "My Book";
+      content: "{documentTitle}";
   }
 
   @bottom-right {
@@ -32,7 +32,7 @@ body {
 @page:left {
   @bottom-right {
       margin: 5%;
-      content: "My Book";
+      content: "{documentTitle}";
   }
 
   @bottom-left {

@@ -25,5 +25,8 @@ namespace Commandline
 
         [Option("outputFilepath", Required = false, HelpText = "Where to output the document PDF")]
         public string OutputFilepath { get; set; }
+
+        [Option("title", Required = false, HelpText = "Title of the document")]
+        public string Title { get; set; }
     }
 }
