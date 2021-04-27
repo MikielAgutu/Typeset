@@ -5,9 +5,11 @@ namespace Typeset
 {
     public class Typesetter
     {
+        private readonly BookHtmlCreator _bookHtmlCreator = new BookHtmlCreator(new StringResourceProvider());
+
         public Stream CreateBookPdfStream(params string[] markdownPages)
         {
-            var html = BookHtmlCreator.Create(markdownPages);
+            var html = _bookHtmlCreator.Create(markdownPages);
             return CreatePdfStreamFromHtml(html);
         }
 

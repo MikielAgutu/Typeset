@@ -1,12 +1,18 @@
 ﻿using System;
-using System.IO;
 using System.Text;
 
 namespace Typeset
 {
-    public static class BookHtmlCreator
+    internal class BookHtmlCreator
     {
-        public static string Create(params string[] markdownPages)
+        private readonly IStringResourceProvider _stringResourceProvider;
+
+        public BookHtmlCreator(IStringResourceProvider stringResourceProvider)
+        {
+            _stringResourceProvider = stringResourceProvider;
+        }
+
+        public string Create(params string[] markdownPages)
         {
             var stringBuilder = new StringBuilder();
 
@@ -17,7 +23,7 @@ namespace Typeset
             }
 
             var pagesHtml = stringBuilder.ToString();
-            var css = File.ReadAllText("book.css");
+            var css = _stringResourceProvider.Get(StringResources.Css);
             var html =
                 $"<html>" +
                 "<head>" +
