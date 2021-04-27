@@ -2,7 +2,7 @@
 {
     public static class StringResources
     {
-        public const string BookCss = "book.css";
-        public const string BookHtml = "book.html";
+        public const string DocumentCss = "document.css";
+        public const string DocumentHtml = "document.html";
     }
 }

@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 
 namespace Typeset
 {
-    internal class BookHtmlCreator
+    internal class DocumentHtmlCreator
     {
         private readonly IStringResourceProvider _stringResourceProvider;
 
-        public BookHtmlCreator(IStringResourceProvider stringResourceProvider)
+        public DocumentHtmlCreator(IStringResourceProvider stringResourceProvider)
         {
             _stringResourceProvider = stringResourceProvider;
         }
@@ -16,10 +15,10 @@ namespace Typeset
         public string Create(params string[] markdownPages)
         {
             var pagesHtml = GetHtmlForMarkdownPages(markdownPages);
-            var bookHtml = _stringResourceProvider.Get(StringResources.BookHtml);
-            var css = _stringResourceProvider.Get(StringResources.BookCss);
+            var documentHtml = _stringResourceProvider.Get(StringResources.DocumentHtml);
+            var css = _stringResourceProvider.Get(StringResources.DocumentCss);
 
-            var html = bookHtml
+            var html = documentHtml
                 .Replace("{css}", css)
                 .Replace("{pagesHtml}", pagesHtml);
 
