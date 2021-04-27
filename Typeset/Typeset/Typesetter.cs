@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 using System.Threading.Tasks;
 
 namespace Typeset
@@ -9,27 +7,7 @@ namespace Typeset
     {
         public Stream CreateBookPdfStream(params string[] markdownPages)
         {
-            var stringBuilder = new StringBuilder();
-
-            foreach (var markdownPage in markdownPages)
-            {
-                var markdownPageHtml = MarkdownToHtmlConverter.Convert(markdownPage);
-                stringBuilder.AppendLine(markdownPageHtml);
-            }
-
-            var pagesHtml = stringBuilder.ToString();
-            var css = File.ReadAllText("book.css");
-            var html =
-                $"<html>" +
-                "<head>" +
-                "<style>" +
-                $"{css}" +
-                "</style>" +
-                "</head>" +
-                $"{Environment.NewLine}" +
-                $"{pagesHtml}" +
-                "</html>";
-
+            var html = BookHtmlCreator.Create(markdownPages);
             return CreatePdfStreamFromHtml(html);
         }
 
