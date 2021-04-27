@@ -14,6 +14,7 @@ namespace Typeset
 
             await using var page = await browser.NewPageAsync();
             await page.SetContentAsync(html);
+            await page.SetJavaScriptEnabledAsync(true);
             return await page.PdfStreamAsync();
         }
     }
