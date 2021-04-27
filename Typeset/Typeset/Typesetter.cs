@@ -5,10 +5,15 @@ namespace Typeset
 {
     public class Typesetter
     {
+        public Stream CreatePdfStreamFromMarkdown(string markdown)
+        {
+            var html = MarkdownToHtmlConverter.Convert(markdown);
+            return CreatePdfStreamFromHtml(html);
+        }
+
         public Stream CreatePdfStreamFromHtml(string html)
         {
-            var pdfStream = CreatePdfStreamFromHtmlAsync(html).GetAwaiter().GetResult();
-            return pdfStream;
+            return CreatePdfStreamFromHtmlAsync(html).GetAwaiter().GetResult();
         }
 
         private static async Task<Stream> CreatePdfStreamFromHtmlAsync(string html)
