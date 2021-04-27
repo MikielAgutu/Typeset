@@ -9,4 +9,10 @@
     <PackageReference Include="PuppeteerSharp" Version="4.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="book.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

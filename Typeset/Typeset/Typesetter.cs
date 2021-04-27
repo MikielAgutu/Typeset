@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,11 +13,24 @@ namespace Typeset
 
             foreach (var markdownPage in markdownPages)
             {
-                var html = MarkdownToHtmlConverter.Convert(markdownPage);
-                stringBuilder.AppendLine(html);
+                var markdownPageHtml = MarkdownToHtmlConverter.Convert(markdownPage);
+                stringBuilder.AppendLine(markdownPageHtml);
             }
 
-            return CreatePdfStreamFromHtml(stringBuilder.ToString());
+            var pagesHtml = stringBuilder.ToString();
+            var css = File.ReadAllText("book.css");
+            var html =
+                $"<html>" +
+                "<head>" +
+                "<style>" +
+                $"{css}" +
+                "</style>" +
+                "</head>" +
+                $"{Environment.NewLine}" +
+                $"{pagesHtml}" +
+                "</html>";
+
+            return CreatePdfStreamFromHtml(html);
         }
 
         public Stream CreatePdfStreamFromMarkdown(string markdown)

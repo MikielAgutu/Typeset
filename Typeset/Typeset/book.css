@@ -1,0 +1,26 @@
+﻿/*
+  Get title of the current chapter, which will be the content of the h1.
+  Reset figure counter because figures start from 1 in each chapter.
+*/
+h1 {
+    string-set: chapterTitle content();
+    page-break-before: always;
+    counter-reset: footnote;
+}
+
+/* Increment chapter counter */
+h1.chapter:before {
+    counter-increment: chapternum;
+    content: counter(chapternum) ". ";
+}
+
+/* Page breaking rules */
+h1, h2, h3, h4, h5 {
+    font-weight: bold;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+}
+
+h1 + p, h2 + p, h3 + p {
+    page-break-before: avoid;
+}
