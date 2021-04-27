@@ -1,4 +1,53 @@
-﻿/*
+﻿html {
+    font-family: "arial";
+}
+
+body {
+    margin: 0;
+}
+
+@page {
+    size: A3;
+    margin:70pt 60pt 70pt;
+}
+
+@page:right {
+  @bottom-left {
+      margin: 5%;
+      content: "My Book";
+  }
+
+  @bottom-right {
+      margin: 5%;
+      content: counter(page);
+  }
+
+  @top-right {
+      content: string(chapterTitle);
+      margin: 5%;
+  }
+}
+
+/* For pages on the left hand side */
+@page:left {
+  @bottom-right {
+      margin: 5%;
+      content: "My Book";
+  }
+
+  @bottom-left {
+      margin: 5%;
+      content: counter(page);
+  }
+}
+
+body {
+  /* Reset chapter and figure counters */
+	counter-reset: chapternum;
+    line-height: 200%;
+}
+
+/*
   Get title of the current chapter, which will be the content of the h1.
   Reset figure counter because figures start from 1 in each chapter.
 */
@@ -23,4 +72,8 @@ h1, h2, h3, h4, h5 {
 
 h1 + p, h2 + p, h3 + p {
     page-break-before: avoid;
+}
+
+p {
+    font-size: 12pt;
 }
