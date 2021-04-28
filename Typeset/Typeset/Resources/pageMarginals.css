@@ -1,0 +1,19 @@
+﻿@page:left {
+    @bottom-left {
+        content: "{documentTitle}";
+    }
+
+    @top-right {
+        content: string(chapterTitle);
+    }
+}
+
+@page:right {
+    @bottom-left {
+        content: "{documentTitle}";
+    }
+
+    @top-right {
+        content: string(chapterTitle);
+    }
+}

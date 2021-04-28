@@ -5,12 +5,14 @@ using System.Linq;
 using CommandLine;
 using Typeset;
 
-namespace Commandline
+namespace CLI
 {
     public static class Program
     {
         public static int Main(string[] args)
         {
+            Console.WriteLine("Typeset - Print-ready PDFs from Markdown");
+
             return Parser.Default.ParseArguments<CommandLineOptions>(args)
                 .MapResult(Enter, HandleCommandLineParseError);
         }
@@ -40,17 +42,16 @@ namespace Commandline
         private static void RunTypeset(CommandLineOptions commandLineOptions)
         {
             var typesetter = new Typesetter();
-            var documentFormatting = new DocumentFormatting
-            {
-                FontFamily = commandLineOptions.FontFamily,
-                FontSize = commandLineOptions.FontSize,
-                LineHeight = commandLineOptions.LineHeight,
-                PageMargin = commandLineOptions.PageMargin,
-                PageSize = commandLineOptions.PageSize
-            };
+            var documentFormatting = new DocumentFormatting(
+                commandLineOptions.FontFamily,
+                commandLineOptions.PageSize,
+                commandLineOptions.PageMargin,
+                commandLineOptions.LineHeight,
+                commandLineOptions.FontSize,
+                commandLineOptions.PrintPageNumbers,
+                commandLineOptions.PrintMarginals);
 
-            var documentMetadata = 
-                new DocumentMetadata(
+            var documentMetadata = new DocumentMetadata(
                 commandLineOptions.Title,
                 documentFormatting);
 
@@ -59,11 +60,6 @@ namespace Commandline
 
             using var fileStream = new FileStream(commandLineOptions.OutputFilepath, FileMode.Create);
             stream.CopyTo(fileStream);
-        }
-
-        private static void HandleParseError(IEnumerable<Error> errors)
-        {
-            throw new Exception($"Failed to parse command line arguments {string.Join(Environment.NewLine, errors)}");
         }
     }
 }

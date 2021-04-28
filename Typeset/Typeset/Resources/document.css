@@ -11,34 +11,16 @@ body {
     margin: {pageMargin};
 }
 
-/* The first page */
-@page:first {
-    margin: 0;
-
-    @bottom-right {
-        content: normal; /* Prevent conent appearing */
-        margin: 0;
-    }
-
-    @bottom-left {
-        content: normal;
-        margin: 0;
-    }
-}
-
 @page:right {
   @bottom-left {
       margin: 5%;
-      content: "{documentTitle}";
   }
 
   @bottom-right {
       margin: 5%;
-      content: counter(page);
   }
 
   @top-right {
-      content: string(chapterTitle);
       margin: 5%;
   }
 }
@@ -47,12 +29,10 @@ body {
 @page:left {
   @bottom-right {
       margin: 5%;
-      content: "{documentTitle}";
   }
 
   @bottom-left {
       margin: 5%;
-      content: counter(page);
   }
 }
 

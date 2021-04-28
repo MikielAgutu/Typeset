@@ -1,0 +1,11 @@
+﻿@page:left {
+    @bottom-left {
+        content: counter(page);
+    }
+}
+
+@page:right {
+    @bottom-right {
+        content: counter(page);
+    }
+}

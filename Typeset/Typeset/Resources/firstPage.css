@@ -1,0 +1,13 @@
+﻿@page:first {
+    margin: 0;
+
+    @bottom-right {
+        content: normal; /* Prevent conent appearing */
+        margin: 0;
+    }
+
+    @bottom-left {
+        content: normal;
+        margin: 0;
+    }
+}
