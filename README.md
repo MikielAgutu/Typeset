@@ -1,4 +1,5 @@
-# Typeset
+# Typeset ![build](https://github.com/MikielAgutu/Typeset/actions/workflows/dotnet.yml/badge.svg)
+
 Typeset - Convert markdown to print ready PDFs
 
 ## Example
