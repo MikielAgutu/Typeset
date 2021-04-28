@@ -24,7 +24,7 @@ namespace CLI
 
         private static int Enter(CommandLineOptions commandLineOptions)
         {
-            var exitCode = 1;
+            var exitCode = 0;
 
             try
             {
@@ -33,7 +33,7 @@ namespace CLI
             catch (Exception e)
             {
                 Console.Error.WriteLine(e.Message);
-                exitCode = -1;
+                exitCode = 1;
             }
 
             return exitCode;

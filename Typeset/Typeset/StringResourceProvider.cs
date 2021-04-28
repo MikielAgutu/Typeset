@@ -6,7 +6,7 @@ namespace Typeset
     {
         public string Get(string resourceName)
         {
-            return File.ReadAllText(resourceName);
+            return File.ReadAllText(Path.Join("Resources", resourceName));
         }
     }
 }

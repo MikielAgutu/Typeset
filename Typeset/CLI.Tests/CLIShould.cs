@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using Shouldly;
 
 namespace CLI.Tests
 {
@@ -16,7 +17,7 @@ namespace CLI.Tests
                 "-o", outputFilepath
             };
 
-            Program.Main(args);
+            Program.Main(args).ShouldBe(0);
         }
     }
 }

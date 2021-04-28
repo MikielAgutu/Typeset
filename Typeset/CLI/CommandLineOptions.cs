@@ -56,13 +56,13 @@ namespace CLI
         [Option("printPageNumbers",
             Required = false,
             HelpText = "Whether to print page numbers",
-            Default = "")]
+            Default = false)]
         public bool PrintPageNumbers { get; set; }
 
         [Option("printPageMarginals",
             Required = false,
             HelpText = "Whether to print page marginals",
-            Default = "")]
+            Default = false)]
         public bool PrintMarginals { get; set; }
     }
 }
