@@ -8,7 +8,7 @@
     <None Remove="Resources\document.css" />
     <None Remove="Resources\document.html" />
     <None Remove="Resources\firstPage.css" />
-    <None Remove="Resources\paged.js" />
+    <None Remove="Resources\pagedjs" />
     <None Remove="Resources\pageMarginals.css" />
     <None Remove="Resources\pageNumber.css" />
   </ItemGroup>
@@ -23,7 +23,7 @@
     <EmbeddedResource Include="Resources\firstPage.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\paged.js">
+    <EmbeddedResource Include="Resources\pagedjs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\pageMarginals.css">
