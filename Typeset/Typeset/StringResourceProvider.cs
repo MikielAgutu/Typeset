@@ -1,12 +1,24 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Reflection;
 
 namespace Typeset
 {
     public class StringResourceProvider : IStringResourceProvider
     {
+        private readonly Assembly _assembly = typeof(StringResourceProvider).GetTypeInfo().Assembly;
+
         public string Get(string resourceName)
         {
-            return File.ReadAllText(Path.Join("Resources", resourceName));
+            var resource = _assembly.GetManifestResourceStream($"Typeset.Resources.{resourceName}");
+
+            if (resource == null)
+            {
+                throw new Exception($"Failed to load resource {resourceName}");
+            }
+
+            using var reader = new StreamReader(resource);
+            return reader.ReadToEnd();
         }
     }
 }

@@ -5,29 +5,38 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Markdig" Version="0.24.0" />
-    <PackageReference Include="PuppeteerSharp" Version="4.0.0" />
+    <None Remove="Resources\document.css" />
+    <None Remove="Resources\document.html" />
+    <None Remove="Resources\firstPage.css" />
+    <None Remove="Resources\paged.js" />
+    <None Remove="Resources\pageMarginals.css" />
+    <None Remove="Resources\pageNumber.css" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Resources\document.css">
+    <EmbeddedResource Include="Resources\document.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Resources\document.html">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\document.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Resources\firstPage.css">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\firstPage.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Resources\paged.js">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\paged.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Resources\pageMarginals.css">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\pageMarginals.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Resources\pageNumber.css">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\pageNumber.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Markdig" Version="0.24.0" />
+    <PackageReference Include="PuppeteerSharp" Version="4.0.0" />
   </ItemGroup>
 
 </Project>
