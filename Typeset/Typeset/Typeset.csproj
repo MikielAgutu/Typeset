@@ -19,6 +19,9 @@
     <None Update="Resources\firstPage.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Resources\paged.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\pageMarginals.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

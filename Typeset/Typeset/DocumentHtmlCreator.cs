@@ -22,34 +22,19 @@ namespace Typeset
 
         private string CreateDocumentHtml(IEnumerable<string> markdownPages, string css)
         {
-            var htmlTemplate = GetHtmlTemplate();
-            var html = SubstituteVariablesInHtmlTemplate(markdownPages, htmlTemplate, css);
-            return html;
+            var htmlTemplate = _stringResourceProvider.Get(StringResources.DocumentHtml);
+            var pagedJs = _stringResourceProvider.Get(StringResources.PagedJs);
+            var pagesHtml = GetHtmlForMarkdownPages(markdownPages);
+
+            return htmlTemplate
+                .Replace("{css}", css)
+                .Replace("{pagedJs}", pagedJs)
+                .Replace("{pagesHtml}", pagesHtml);
         }
 
         private string CreateDocumentCss(DocumentMetadata documentMetadata)
         {
-            var cssTemplate = GetCssTemplate(documentMetadata.DocumentFormatting);
-            return SubstituteVariablesInCssTemplate(documentMetadata, cssTemplate);
-        }
-
-        private static string SubstituteVariablesInHtmlTemplate(IEnumerable<string> markdownPages, string htmlTemplate, string css)
-        {
-            var pagesHtml = GetHtmlForMarkdownPages(markdownPages);
-
-            var html = htmlTemplate
-                .Replace("{css}", css)
-                .Replace("{pagesHtml}", pagesHtml);
-            return html;
-        }
-
-        private string GetHtmlTemplate()
-        {
-            return _stringResourceProvider.Get(StringResources.DocumentHtml);
-        }
-
-        private static string SubstituteVariablesInCssTemplate(DocumentMetadata documentMetadata, string cssTemplate)
-        {
+            var cssTemplate = CreateCssTemplate(documentMetadata.DocumentFormatting);
             var documentFormatting = documentMetadata.DocumentFormatting;
 
             return cssTemplate
@@ -61,7 +46,7 @@ namespace Typeset
                 .Replace("{documentTitle}", documentMetadata.Title);
         }
 
-        private string GetCssTemplate(DocumentFormatting documentFormatting)
+        private string CreateCssTemplate(DocumentFormatting documentFormatting)
         {
             var firstPageCss = _stringResourceProvider.Get(StringResources.FirstPageCss);
             var pageMarginalsCss = _stringResourceProvider.Get(StringResources.PageMarginalsCss);
