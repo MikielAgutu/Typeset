@@ -17,16 +17,15 @@ namespace Typeset
                     "14pt",
                     false,
                     false));
+        public Stream CreatePdfDocument(params string[] markdownPages)
+        {
+            var html = _documentHtmlCreator.Create(_defaultDocumentMetadata, markdownPages);
+            return CreatePdfStreamFromHtmlAsync(html).GetAwaiter().GetResult();
+        }
 
         public Stream CreatePdfDocument(DocumentMetadata documentMetadata, params string[] markdownPages)
         {
             var html = _documentHtmlCreator.Create(documentMetadata, markdownPages);
-            return CreatePdfStreamFromHtmlAsync(html).GetAwaiter().GetResult();
-        }
-
-        public Stream CreatePdfDocument(params string[] markdownPages)
-        {
-            var html = _documentHtmlCreator.Create(_defaultDocumentMetadata, markdownPages);
             return CreatePdfStreamFromHtmlAsync(html).GetAwaiter().GetResult();
         }
 
