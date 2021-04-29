@@ -6,7 +6,7 @@ namespace Typeset
 {
     public class Typesetter
     {
-        private readonly DocumentHtmlCreator _documentHtmlCreator = new DocumentHtmlCreator(new StringResourceProvider());
+        private readonly DocumentHtmlCreator _documentHtmlCreator = new(new StringResourceProvider());
 
         public Stream CreateDocumentPdfStream(DocumentMetadata documentMetadata, IEnumerable<string> markdownPages)
         {
