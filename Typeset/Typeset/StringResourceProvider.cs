@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace Typeset
 {
-    public class StringResourceProvider : IStringResourceProvider
+    internal class StringResourceProvider : IStringResourceProvider
     {
         private readonly Assembly _assembly = typeof(StringResourceProvider).GetTypeInfo().Assembly;
 
