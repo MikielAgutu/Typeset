@@ -56,7 +56,7 @@ namespace CLI
                 documentFormatting);
 
             var markdownPages = commandLineOptions.InputFilePaths.Select(File.ReadAllText);
-            var stream = typesetter.CreateDocumentPdfStream(documentMetadata, markdownPages);
+            var stream = typesetter.CreatePdfDocument(documentMetadata, markdownPages);
 
             using var fileStream = new FileStream(commandLineOptions.OutputFilepath, FileMode.Create);
             stream.CopyTo(fileStream);

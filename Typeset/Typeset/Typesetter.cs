@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Threading.Tasks;
 
 namespace Typeset
@@ -8,27 +7,44 @@ namespace Typeset
     {
         private readonly DocumentHtmlCreator _documentHtmlCreator = new(new StringResourceProvider());
 
-        public Stream CreateDocumentPdfStream(DocumentMetadata documentMetadata, IEnumerable<string> markdownPages)
+        private readonly DocumentMetadata _defaultDocumentMetadata =
+            new(string.Empty,
+                new DocumentFormatting(
+                    "Arial",
+                    "A4",
+                    "70pt 60pt 70pt",
+                    "200%",
+                    "14pt",
+                    false,
+                    false));
+
+        public Stream CreatePdfDocument(DocumentMetadata documentMetadata, params string[] markdownPages)
         {
             var html = _documentHtmlCreator.Create(documentMetadata, markdownPages);
-            return CreatePdfStreamFromHtml(html);
-        }
-
-        public Stream CreatePdfStreamFromMarkdown(string markdown)
-        {
-            var html = MarkdownToHtmlConverter.Convert(markdown);
-            return CreatePdfStreamFromHtml(html);
-        }
-
-        public Stream CreatePdfStreamFromHtml(string html)
-        {
             return CreatePdfStreamFromHtmlAsync(html).GetAwaiter().GetResult();
+        }
+
+        public Stream CreatePdfDocument(params string[] markdownPages)
+        {
+            var html = _documentHtmlCreator.Create(_defaultDocumentMetadata, markdownPages);
+            return CreatePdfStreamFromHtmlAsync(html).GetAwaiter().GetResult();
+        }
+
+        public Task<Stream> CreatePdfDocumentAsync(params string[] markdownPages)
+        {
+            var html = _documentHtmlCreator.Create(_defaultDocumentMetadata, markdownPages);
+            return CreatePdfStreamFromHtmlAsync(html);
+        }
+
+        public Task<Stream> CreatePdfDocumentAsync(DocumentMetadata documentMetadata, params string[] markdownPages)
+        {
+            var html = _documentHtmlCreator.Create(documentMetadata, markdownPages);
+            return CreatePdfStreamFromHtmlAsync(html);
         }
 
         private static async Task<Stream> CreatePdfStreamFromHtmlAsync(string html)
         {
-            var pdfStream = await PdfGenerator.GeneratePdfStreamFromHtml(html);
-            return pdfStream;
+            return await PdfGenerator.GeneratePdfStreamFromHtml(html);
         }
     }
 }
