@@ -17,6 +17,7 @@ namespace Typeset
                     "14pt",
                     false,
                     false));
+
         public Stream CreatePdfDocument(params string[] markdownPages)
         {
             var html = _documentHtmlCreator.Create(_defaultDocumentMetadata, markdownPages);
