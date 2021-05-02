@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Note: Ensure line endings are LF not CRLF
+chmod +x ./bin/CLI
+
+./bin/CLI "$@"
