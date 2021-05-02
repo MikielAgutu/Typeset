@@ -18,6 +18,26 @@ You can then copy `typeset-cli-windows` to a convenient place on your machine, t
 
 Only supports Windows at the moment.
 
+### Docker
+
+Basic usage
+
+```
+docker pull mikielagutu/typesetter
+docker run --rm mikielagutu/typesetter
+```
+
+You'll need to mount a volume to allow Docker to access files on your machine.
+
+For example:
+- Create a folder called `markdown` in the current directory
+- Put your `.md` files in there
+- Use the `$pwd` environment variable to grab the current directory
+
+```
+docker run -v $pwd/markdown:/app/markdown --rm mikielagutu/typeset -i markdown/book.md -o markdown/book.pdf
+```
+
 ## Documentation
 
 ```
