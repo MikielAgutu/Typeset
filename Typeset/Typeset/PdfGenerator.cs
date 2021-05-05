@@ -10,11 +10,12 @@ namespace Typeset
         {
             var browserFetcher = new BrowserFetcher();
             await browserFetcher.DownloadAsync();
-            await using var browser = await Puppeteer.LaunchAsync(new LaunchOptions
+            var launchOptions = new LaunchOptions
             {
                 Headless = true,
                 Args = new [] { "--no-sandbox" }
-            });
+            };
+            await using var browser = await Puppeteer.LaunchAsync(launchOptions);
 
             await using var page = await browser.NewPageAsync();
             await page.SetContentAsync(html);
