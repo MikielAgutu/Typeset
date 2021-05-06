@@ -20,6 +20,8 @@ Only supports Windows at the moment.
 
 ### Docker
 
+See [DockerHub](https://hub.docker.com/repository/docker/mikielagutu/typeset).
+
 Basic usage
 
 ```
