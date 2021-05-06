@@ -23,8 +23,8 @@ Only supports Windows at the moment.
 Basic usage
 
 ```
-docker pull mikielagutu/typesetter
-docker run --rm mikielagutu/typesetter
+docker pull mikielagutu/typesetter:latest
+docker run --rm mikielagutu/typesetter:latest
 ```
 
 You'll need to mount a volume to allow Docker to access files on your machine.
